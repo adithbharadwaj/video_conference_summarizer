@@ -303,6 +303,7 @@ if __name__ == '__main__':
 	f.close()
 
 	send()
+	exit(0)
 
 
 
