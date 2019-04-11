@@ -1,2 +1,4 @@
 orderedset
 pandas
+SpeechRecognition
+pydub
