@@ -11,7 +11,7 @@ from orderedset import OrderedSet
 from speech import convert_audio_to_text, silence_based_conversion
 from mailing import send
 
-#convert_audio_to_text()
+convert_audio_to_text()
 #silence_based_conversion()
 text = ''
 with open('recognized.txt') as source:
