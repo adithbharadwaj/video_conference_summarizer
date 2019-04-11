@@ -2,3 +2,4 @@ orderedset
 pandas
 SpeechRecognition
 pydub
+xlrd
