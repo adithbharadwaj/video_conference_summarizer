@@ -11,7 +11,7 @@ import speech_recognition as sr
 def convert_audio_to_text():  
 	# Input audio file to be sliced 
 	from pydub import AudioSegment
-	audio = AudioSegment.from_mp3("ghandi.wav")
+	audio = AudioSegment.from_mp3("gandhi.wav")
 	#audio.export("gsk_mom.wav", format="wav")
 	#audio = AudioSegment.from_wav("gsk_mom.wav") 
 	  
@@ -19,14 +19,14 @@ def convert_audio_to_text():
 	n = len(audio) 
 	counter = 1
 	fh = open("recognized.txt", "w+") 
-
+	'''
 	try:
 		os.mkdir('audio_chunks')
 	except(FileExistsError):
 		pass
 
 	os.chdir('audio_chunks')  
-
+	'''
 	# Interval length at which to slice the audio file. 
 	interval = 12 * 1000
 	overlap = 2*1000
@@ -86,7 +86,7 @@ def convert_audio_to_text():
 	        fh.close() 
 	        break
 
-	os.chdir('..')
+	#os.chdir('..')
 
 def match_target_amplitude(aChunk, target_dBFS):
     ''' Normalize given audio chunk '''
@@ -109,14 +109,14 @@ def silence_based_conversion():
 	    #Adjust this per requirement
 	    silence_thresh=-16 
 	)
-
+	'''
 	try:
 		os.mkdir('audio_chunks')
 	except(FileExistsError):
 		pass
 
 	os.chdir('audio_chunks') 
-
+	'''
 	start = 0
 	end = 0
  
@@ -157,7 +157,7 @@ def silence_based_conversion():
 	    except sr.RequestError as e: 
 	        print("Could not request results. check your internet connection") 
 
-	os.chdir('..')
+	#os.chdir('..')
 	  
 
 #silence_based_conversion()

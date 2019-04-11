@@ -9,8 +9,9 @@ import math
 from orderedset import OrderedSet
 
 from speech import convert_audio_to_text, silence_based_conversion
+from mailing import send
 
-convert_audio_to_text()
+#convert_audio_to_text()
 #silence_based_conversion()
 text = ''
 with open('recognized.txt') as source:
@@ -240,7 +241,7 @@ def get_summary(sorted_score_to_sentence, sentence_to_index, score_to_sentence, 
 
 	for i in indices:
 
-		summary += index_to_sentence[i] + '.'
+		summary += '* ' + index_to_sentence[i] + '.\n'
 		print('* ', index_to_sentence[i])
 
 	return summary	
@@ -296,8 +297,12 @@ if __name__ == '__main__':
 
 	print('number of sentences =', length_of_summary)
 
-	get_summary(sorted_score_to_sentence, sentence_to_index, score_to_sentence, index_to_sentence, length_of_summary)
+	summary = get_summary(sorted_score_to_sentence, sentence_to_index, score_to_sentence, index_to_sentence, length_of_summary)
+	f = open('summary.txt', 'w+')
+	f.write(summary)
+	f.close()
 
+	send()
 
 
 
