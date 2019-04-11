@@ -10,7 +10,10 @@ import speech_recognition as sr
 
 def convert_audio_to_text():  
 	# Input audio file to be sliced 
-	audio = AudioSegment.from_wav("gandhi.wav") 
+	from pydub import AudioSegment
+	audio = AudioSegment.from_mp3("gsk_dad.wav")
+	#audio.export("gsk_mom.wav", format="wav")
+	#audio = AudioSegment.from_wav("gsk_mom.wav") 
 	  
 	# Length of the audiofile in milliseconds 
 	n = len(audio) 
@@ -25,8 +28,8 @@ def convert_audio_to_text():
 	os.chdir('audio_chunks')  
 
 	# Interval length at which to slice the audio file. 
-	interval = 10 * 1000
-	overlap = 1.5*1000
+	interval = 12 * 1000
+	overlap = 2*1000
 	start = 0
 	end = 0
 	  
@@ -91,14 +94,16 @@ def match_target_amplitude(aChunk, target_dBFS):
     return aChunk.apply_gain(change_in_dBFS)
 
 def silence_based_conversion():
-
+	
+	#sound = AudioSegment.from_mp3("elroy.mp3")
+	#sound.export("elroy.wav", format="wav")
 	song = AudioSegment.from_wav("gandhi.wav")
 	fh = open("recognized.txt", "w+")
 	#split track where silence is 2 seconds or more and get chunks
 
 	chunks = split_on_silence(song, 
 	    # must be silent for at least 2 seconds or 2000 ms
-	    min_silence_len=500,
+	    min_silence_len=800,
 
 	    # consider it silent if quieter than -16 dBFS
 	    #Adjust this per requirement
@@ -127,7 +132,7 @@ def silence_based_conversion():
 	    normalized_chunk = match_target_amplitude(audio_chunk, -20.0)
 
 	    #Export audio chunk with new bitrate
-	    print("exporting chunk{0}.mp3".format(i))
+	    print("exporting chunk{0}.wav".format(i))
 	    normalized_chunk.export("./chunk{0}.wav".format(i), bitrate='192k', format="wav")
 
 	    filename = 'chunk'+str(i)+'.wav'
