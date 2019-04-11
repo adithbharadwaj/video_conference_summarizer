@@ -11,7 +11,7 @@ import speech_recognition as sr
 def convert_audio_to_text():  
 	# Input audio file to be sliced 
 	from pydub import AudioSegment
-	audio = AudioSegment.from_mp3("gsk_dad.wav")
+	audio = AudioSegment.from_mp3("ghandi.wav")
 	#audio.export("gsk_mom.wav", format="wav")
 	#audio = AudioSegment.from_wav("gsk_mom.wav") 
 	  

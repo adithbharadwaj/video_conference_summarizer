@@ -10,53 +10,6 @@ from orderedset import OrderedSet
 
 from speech import convert_audio_to_text, silence_based_conversion
 
-'''
-text = """  Mohandas Karamchand Gandhi was an Indian activist who was the leader of the 
-        Indian independence movement against British rule. Employing nonviolent civil 
-        disobedience, Gandhi led India to independence and inspired movements for civil 
-        rights and freedom across the world. In India, he is also called 
-        Bapu and Gandhi ji. He is unofficially called the Father of the Nation. Born and 
-        raised in a Hindu merchant caste family in coastal Gujarat, India, and trained
-        in law at the Inner Temple, London, Gandhi first employed nonviolent civil 
-        disobedience as an expatriate lawyer in South Africa, in the resident Indian 
-        community's struggle for civil rights. After his return to India in 1915, he 
-        set about organising peasants, farmers, and urban labourers to protest against 
-        excessive land-tax and discrimination. Assuming leadership of the Indian 
-        National Congress in 1921, Gandhi led nationwide campaigns for various social 
-        causes and for achieving Swaraj or self-rule. Gandhi famously led Indians in 
-        challenging the British-imposed salt tax with the 400 km Dandi Salt 
-        March in 1930, and later in calling for the British to Quit India in 1942. He 
-        was imprisoned for many years, upon many occasions, in both South Africa and 
-        India. He lived modestly in a self-sufficient residential community and wore 
-        the traditional Indian dhoti and shawl, woven with yarn hand-spun on a charkha. 
-        He ate simple vegetarian food, and also undertook long fasts as a means of 
-        both self-purification and political protest. Gandhi's vision of an independent 
-        India based on religious pluralism, however, was challenged in the early 1940s 
-        by a new Muslim nationalism which was demanding a separate Muslim homeland 
-        carved out of India. Eventually, in August 1947, Britain granted independence, 
-        but the British Indian Empire was partitioned into two dominions, a 
-        Hindu-majority India and Muslim-majority Pakistan. As many displaced Hindus, 
-        Muslims, and Sikhs made their way to their new lands, religious violence broke 
-        out, especially in the Punjab and Bengal. Eschewing the official celebration of 
-        independence in Delhi, Gandhi visited the affected areas, attempting to provide 
-        solace. In the months following, he undertook several fasts unto death to stop 
-        religious violence. The last of these, undertaken on 12 January 1948 when he was 
-        78, also had the indirect goal of pressuring India to pay out some cash 
-        assets owed to Pakistan. Some Indians thought Gandhi was too accommodating. 
-        Among them was Nathuram Godse, a Hindu nationalist, who assassinated Gandhi on 
-        30 January 1948 by firing three bullets into his chest. Captured along with 
-        many of his co-conspirators and collaborators, Godse and his co-conspirator 
-        Narayan Apte were tried, convicted and executed while many of their other 
-        accomplices were given prison sentences. Gandhi's birthday, 2 October, is 
-        commemorated in India as Gandhi Jayanti, a national holiday, and worldwide as 
-        the International Day of Nonviolence. sleep. While all mammals sleep, whales
-         cannot afford to become unconscious for long because they may drown. The only way they 
-         can sleep is by remaining partially conscious. It is believed that only one hemisphere of
-          the whale’s brain sleeps at a time, so they rest but are never completely asleep. 
-          They can do so most probably near the surface so that they can come up for air easily. 
-
-           """
-'''
 convert_audio_to_text()
 #silence_based_conversion()
 text = ''
@@ -323,7 +276,9 @@ if __name__ == '__main__':
 
 	# print(sentence_to_index)
 
-	compression = int(input('enter the percentage of compression (without "%" symbol)'))
+	#compression = int(input('enter the percentage of compression (without "%" symbol)'))
+	# set the compression percentage. can be customized.
+	compression = 20
 
 	vector, unique_words = vectorize(processed_text)
 
