@@ -1,8 +1,8 @@
-import nltk
+#import nltk
 import re
-import bs4 as bs
+#import bs4 as bs
 import math
-import numpy as np
+#import numpy as np
 
 #from nltk.corpus import stopwords
 
