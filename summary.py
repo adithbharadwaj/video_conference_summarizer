@@ -1,10 +1,5 @@
-#import nltk
 import re
-#import bs4 as bs
 import math
-#import numpy as np
-
-#from nltk.corpus import stopwords
 
 from orderedset import OrderedSet
 
