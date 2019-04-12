@@ -3,19 +3,19 @@ import datetime
 import pandas as pd
 import re
 from email.mime.text import MIMEText
-	 
+
 def get_email_list(path):
-	dataframe = pd.read_excel(path)
-	
-	match_list = []   
+        dataframe = pd.read_excel(path)
 
-	for item in dataframe:
-	    match_list=dataframe["email addresses"].tolist()
+        match_list = []
 
-	print(match_list)
+        for item in dataframe:
+            match_list=dataframe["email addresses"].tolist()
 
-	if(len(match_list)>0):
-		return match_list
+        print(match_list)
+
+        if(len(match_list)>0):
+                return match_list
 
 #module to send mail to receipient list
 def send_mail(recipients, content, From = "ByteMe.RedHat@gmail.com"):
