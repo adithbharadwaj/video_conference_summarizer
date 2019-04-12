@@ -2,6 +2,7 @@
 import re
 #import bs4 as bs
 import math
+import os
 #import numpy as np
 
 #from nltk.corpus import stopwords
@@ -42,7 +43,7 @@ def clean(text):
 			repeat_eliminate[i-1] = ''
 	
 	for i in repeat_eliminate:
-		if i == '' or i == 0:
+		if i == '':
 			repeat_eliminate.remove(i)
 
 	text = ' '.join(repeat_eliminate)

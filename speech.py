@@ -105,11 +105,11 @@ def silence_based_conversion(path = "alice-medium.wav"):
 
 	chunks = split_on_silence(song, 
 	    # must be silent for at least 2 seconds or 2000 ms
-	    min_silence_len=1300,
+	    min_silence_len=1600,
 
 	    # consider it silent if quieter than -16 dBFS
 	    #Adjust this per requirement
-	    silence_thresh = -22
+	    silence_thresh = -16
 	)
 	
 	try:
@@ -146,7 +146,7 @@ def silence_based_conversion(path = "alice-medium.wav"):
 	    r = sr.Recognizer() 
 
 	    with sr.AudioFile(AUDIO_FILE) as source: 
-	    	#r.adjust_for_ambient_noise(source)
+	    	r.adjust_for_ambient_noise(source)
 	    	audio_listened = r.listen(source) 
 	  
 	    try:     
