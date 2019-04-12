@@ -305,8 +305,8 @@ def commence():
 
        	#convert_audio_to_text(audio_path)
         print(audio_path)                              ##Here we can put the name of the file or link to the audio file
-        silence_based_conversion(audio_path)
-        #optimal_split(audio_path)
+        #silence_based_conversion(audio_path)
+        optimal_split(audio_path)
         text = ''
         with open('recognized.txt') as source:
                 for sent in source:
@@ -316,23 +316,7 @@ def commence():
         t_clean = clean(text)
 
         processed_text, sentence_list = get_sentence_of_words(t_clean)
-        '''
-        from sklearn.feature_extraction.text import CountVectorizer
-        from sklearn.feature_extraction.text import TfidfTransformer
 
-        count_vect = CountVectorizer(stop_words = 'english')
-        count_vect = count_vect.fit(sentence_list)
-        freq_term_matrix = count_vect.transform(sentence_list)
-
-        transformer = TfidfTransformer()
-        transformed_weights = transformer.fit_transform(freq_term_matrix)
-
-        print(transformed_weights)
-
-
-        # print(freq_term_matrix)
-        '''
-        #sw = stopwords.words('english')
 
         sentence_to_index = {i:k for k, i in enumerate(sentence_list)}
 
@@ -354,7 +338,7 @@ def commence():
 
         sorted_score_to_sentence, sentence_to_index, score_to_sentence, index_to_sentence = sort_sentences(scores, sentence_list, text)
 
-        if(len(sorted_score_to_sentence) >= 50):
+        if(len(sorted_score_to_sentence) > 30):
         	compression = 15
 
         length_of_summary = math.ceil(len(sorted_score_to_sentence) * compression/100)
