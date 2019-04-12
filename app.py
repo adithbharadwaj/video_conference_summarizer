@@ -305,8 +305,8 @@ def commence():
 
        	#convert_audio_to_text(audio_path)
         print(audio_path)                              ##Here we can put the name of the file or link to the audio file
-        #silence_based_conversion(audio_path)
-        optimal_split(audio_path)
+        silence_based_conversion(audio_path)
+        #optimal_split(audio_path)
         text = ''
         with open('recognized.txt') as source:
                 for sent in source:
