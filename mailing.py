@@ -4,18 +4,27 @@ import pandas as pd
 import re
 from email.mime.text import MIMEText
 
+def addMail(emailID):
+    df = pd.DataFrame({'email addresses': [str(emailID)]})
+    Df = pd.read_excel('demo.xlsx')
+    Df = pd.DataFrame(Df)
+
+    Df=Df.append(df, ignore_index = True)
+
+    Df.to_excel('demo.xlsx', index = False)
+     
 def get_email_list(path):
-        dataframe = pd.read_excel(path)
+    dataframe = pd.read_excel(path)
+    
+    match_list = []   
 
-        match_list = []
+    for item in dataframe:
+        match_list=dataframe["email addresses"].tolist()
 
-        for item in dataframe:
-            match_list=dataframe["email addresses"].tolist()
+    print(match_list)
 
-        print(match_list)
-
-        if(len(match_list)>0):
-                return match_list
+    if(len(match_list)>0):
+        return match_list
 
 #module to send mail to receipient list
 def send_mail(recipients, content, From = "ByteMe.RedHat@gmail.com"):
@@ -43,4 +52,4 @@ def send():
     summary = f.read()
     content = '\n' + current + '\n' + summary
     print(content)
-    send_mail(recipients, content)
+send_mail(recipients, content)
