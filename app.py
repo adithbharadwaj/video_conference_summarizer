@@ -280,6 +280,17 @@ def home():
 	#internal_tab()
 	return render_template('Katti.html')
 
+@app.route("/new_mail")
+def add_new_mail():
+
+	if(request.method == ['POST','GET']):
+		new_mail = request.form['email-id']
+		addMail(new_mail)
+
+	return render_template('Katti.html')
+	#call function to add the entry in the excel file
+
+
 @app.route("/summarizer",methods=['POST','GET'])
 def commence():
 	

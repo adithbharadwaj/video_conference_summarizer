@@ -3,6 +3,15 @@ import datetime
 import pandas as pd
 import re
 from email.mime.text import MIMEText
+
+def addMail(emailID):
+    df = pd.DataFrame({'email addresses': [str(emailID)]})
+    Df = pd.read_excel('demo.xlsx')
+    Df = pd.DataFrame(Df)
+
+    Df=Df.append(df, ignore_index = True)
+
+    Df.to_excel('demo.xlsx', index = False)
 	 
 def get_email_list(path):
 	dataframe = pd.read_excel(path)

@@ -10,8 +10,12 @@
 			background: linear-gradient(to right, #6dd5ed, #2193b0); 
 		}
 		#center{
-			padding-top: 380px;
+			padding-top: 180px;
 			padding-left: 450px;
+		}
+		#right{
+			padding-top: 30px;
+			padding-left: 950px;
 		}
 		#search{
 			width: 540px;
@@ -19,10 +23,20 @@
 	</style>
 </head>
 <body>
+<div id="right" >
+		<form class="form-inline center" action="" method="POST" >
+		  	<div class="form-group mx-sm-3 mb-2" >
+		  	
+		    	<input type="mail" class="form-control" required name="email-id" placeholder="Enter email id">
+		  	</div>
+		  	<button type="submit" class="btn btn-primary mb-2">Submit</button>
+		</form>
+	</div>
 	<div id="center">
-		<form class="form-inline center" action="/summarizer" method="POST">
-		  	<div class="form-group mx-sm-3 mb-2">
-		    	<input type="text" class="form-control" required name="FileName" placeholder="">
+		<form class="form-inline center" action="/summarizer" method="POST" >
+		  	<div class="form-group mx-sm-3 mb-2" >
+		  	
+		    	<input type="text" class="form-control" required name="FileName" placeholder="Enter file path">
 		  	</div>
 		  	<button type="submit" class="btn btn-primary mb-2">Submit</button>
 		</form>
