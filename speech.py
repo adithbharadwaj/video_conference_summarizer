@@ -198,7 +198,7 @@ def optimal_split(path = "mohandas.wav"):
 	fh = open("recognized.txt", "w+")
 
 	input_filename = path#args.input_file
-	window_duration = 1.5#args.min_silence_length
+	window_duration = 1#args.min_silence_length
 	step_duration = window_duration / 10.
 	silence_threshold = 0.00001#args.silence_threshold
 	output_dir = './audio_chunks'
