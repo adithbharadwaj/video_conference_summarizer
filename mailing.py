@@ -41,6 +41,6 @@ def send():
     current = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
     f = open('summary.txt', 'r')
     summary = f.read()
-    content = current + '\n' + summary
+    content = '\n' + current + '\n' + summary
     print(content)
     send_mail(recipients, content)
