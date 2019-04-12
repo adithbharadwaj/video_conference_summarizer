@@ -109,7 +109,7 @@ def silence_based_conversion(path = "alice-medium.wav"):
 
 	    # consider it silent if quieter than -16 dBFS
 	    #Adjust this per requirement
-	    silence_thresh = -16
+	    silence_thresh = -22
 	)
 	
 	try:
