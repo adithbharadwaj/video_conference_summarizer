@@ -10,19 +10,38 @@ from orderedset import OrderedSet
 
 from speech import convert_audio_to_text, silence_based_conversion
 from mailing import send
+from flask import Flask,render_template,url_for,flash,redirect, request
 
-convert_audio_to_text()
-#silence_based_conversion()
-text = ''
-with open('recognized.txt') as source:
-	for sent in source:
-		text += sent
+# convert_audio_to_text("gandhi.wav")
+# #silence_based_conversion()
+# text = ''
+# with open('recognized.txt') as source:
+# 	for sent in source:
+# 		text += sent
 
-print(text)
+app = Flask(__name__)
+
+#print(text)
 
 def clean(text):
 
 	text = text.lower() # convert all words to lower case, 
+
+	print(text)
+
+	repeat_eliminate = list(text.split())
+	
+	for i in range (1,len(repeat_eliminate)):
+		if(repeat_eliminate[i] == repeat_eliminate[i-1]):
+			repeat_eliminate[i-1] = ''
+	
+	for i in repeat_eliminate:
+		if i == '' or i == 0:
+			repeat_eliminate.remove(i)
+
+	text = ' '.join(repeat_eliminate)
+
+	print(text)
 	
 	text = re.sub(r'\s+', ' ', text) # replace or substitute all spaces, tabs, indents (\s) with ' ' (space) 
 
@@ -100,7 +119,7 @@ def vectorize(sentence):
 # function to calculate the tf scores
 def tf(vector, sentence, unique_words):
 
-	tf = list()
+	termf = list()
 
 	no_of_unique_words = len(unique_words) 
 
@@ -112,15 +131,15 @@ def tf(vector, sentence, unique_words):
 
 		for word in sent:
 
-			score = count[sent.index(word)]/ float(len(sent)) # tf = no. of occurence of a word/ total no. of words in the sentence. 
+			score = float(count[sent.index(word)])/ float(len(sent)) # tf = no. of occurence of a word/ total no. of words in the sentence. 
 
 			tflist.append(score)  
 
-		tf.append(tflist)
+		termf.append(tflist)
 
 	# print(tf)	
 	
-	return tf	
+	return termf	
 
 
 #function to calculate idf. 
@@ -130,7 +149,7 @@ def idf(vector, sentence, unique_words):
 
 	no_of_sentences = len(sentence)
 
-	idf = list()
+	indef = list()
 
 	for sent in sentence:
 		
@@ -145,15 +164,15 @@ def idf(vector, sentence, unique_words):
 					count += 1
 		
 
-			score = math.log(no_of_sentences/float(count)) # caclulating idf scores
+			score = float(math.log(no_of_sentences/float(count))) # caclulating idf scores
 
 			idflist.append(score)
 
-		idf.append(idflist)	
+		indef.append(idflist)	
 
 	#print(idf)	
 
-	return idf
+	return indef
 
 
 # function to calculate the tf-idf scores.
@@ -161,7 +180,7 @@ def tf_idf(tf, idf):
 
 	# tf-idf = tf(w) * idf(w)
 
-	tfidf = [[0 for j in range(len(tf[i]))] for i in range(len(tf))]
+	tfidf = [[0.1 for j in range(len(tf[i]))] for i in range(len(tf))]
 
 	for i in range(len(tf)):
 		for j in range(len(tf[i])):
@@ -197,7 +216,7 @@ def sentence_score(tfidf, sentence):
 def sort_sentences(score, sentence, text):
 
 	# a mapping from score to sentence. i.e, key = scores, value = sentences.
-	score_to_sentence = {i:k for i, k in zip(scores, sentence)}
+	score_to_sentence = {i:k for i, k in zip(score, sentence)}
 
 	# a mapping from sentence to index.
 	sentence_to_index = {i:k for k, i in enumerate(sentence)}
@@ -249,8 +268,25 @@ def get_summary(sorted_score_to_sentence, sentence_to_index, score_to_sentence, 
 
 
 
-if __name__ == '__main__':
+@app.route("/")
+def home():
+	#internal_tab()
+	return render_template('Katti.html')
 
+@app.route("/summarizer",methods=['POST','GET'])
+def commence():
+	
+	audio_path = "gandhi.wav"
+	if(request.method == 'POST'):
+		audio_path = request.form['FileName']
+	
+	convert_audio_to_text(audio_path)
+	#print(audio_path)				##Here we can put the name of the file or link to the audio file
+	#silence_based_conversion(audio_path)
+	text = ''
+	with open('recognized.txt') as source:
+		for sent in source:
+			text += sent
 
 	t_clean = clean(text)	
 
@@ -279,15 +315,15 @@ if __name__ == '__main__':
 
 	#compression = int(input('enter the percentage of compression (without "%" symbol)'))
 	# set the compression percentage. can be customized.
-	compression = 20
+	compression = 35
 
 	vector, unique_words = vectorize(processed_text)
 
-	tf = tf(vector, processed_text, unique_words)
+	termf = tf(vector, processed_text, unique_words)
 
-	idf = idf(vector, processed_text, unique_words)
+	indf = idf(vector, processed_text, unique_words)
 
-	tfidf = tf_idf(tf, idf)
+	tfidf = tf_idf(termf, indf)
 
 	scores = sentence_score(tfidf, processed_text)
 
@@ -303,11 +339,14 @@ if __name__ == '__main__':
 	f.close()
 
 	send()
-	exit(0)
+	#exit(0)
+	##Here we should redirect to a pic of us three
+	return render_template('home.html')
 
 
 
-
+if __name__ == '__main__':
+	app.run(debug = True)
 
 
 

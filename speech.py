@@ -8,12 +8,14 @@ from pydub.silence import split_on_silence
 from pydub import AudioSegment 
 import speech_recognition as sr 
 
-def convert_audio_to_text():  
+def convert_audio_to_text(path = "gandhi.wav"):  
 	# Input audio file to be sliced 
 	from pydub import AudioSegment
-	audio = AudioSegment.from_mp3("gandhi.wav")
+	#path = 'audio.wav'
+	print(path)
+	#audio = AudioSegment.from_mp3(path)
 	#audio.export("gsk_mom.wav", format="wav")
-	#audio = AudioSegment.from_wav("gsk_mom.wav") 
+	audio = AudioSegment.from_wav(path) 
 	  
 	# Length of the audiofile in milliseconds 
 	n = len(audio) 
@@ -28,8 +30,8 @@ def convert_audio_to_text():
 	os.chdir('audio_chunks')  
 	
 	# Interval length at which to slice the audio file. 
-	interval = 12 * 1000
-	overlap = 2*1000
+	interval = 10 * 1000
+	overlap = 1*1000
 	start = 0
 	end = 0
 	  
@@ -68,7 +70,7 @@ def convert_audio_to_text():
 	    r = sr.Recognizer() 
 
 	    with sr.AudioFile(AUDIO_FILE) as source: 
-	    	#r.adjust_for_ambient_noise(source)
+	    	r.adjust_for_ambient_noise(source)
 	    	audio_listened = r.listen(source) 
 	  
 	    try:     
@@ -93,21 +95,21 @@ def match_target_amplitude(aChunk, target_dBFS):
     change_in_dBFS = target_dBFS - aChunk.dBFS
     return aChunk.apply_gain(change_in_dBFS)
 
-def silence_based_conversion():
-	
-	#sound = AudioSegment.from_mp3("elroy.mp3")
-	#sound.export("elroy.wav", format="wav")
-	song = AudioSegment.from_wav("gandhi.wav")
+def silence_based_conversion(path = "alice-medium.wav"):
+	#print(path)
+	#sound = AudioSegment.from_mp3(path)
+	#sound.export('audio.wav', format="wav")
+	song = AudioSegment.from_wav(path)
 	fh = open("recognized.txt", "w+")
 	#split track where silence is 2 seconds or more and get chunks
 
 	chunks = split_on_silence(song, 
 	    # must be silent for at least 2 seconds or 2000 ms
-	    min_silence_len=800,
+	    min_silence_len=1500,
 
 	    # consider it silent if quieter than -16 dBFS
 	    #Adjust this per requirement
-	    silence_thresh=-16 
+	    silence_thresh = -22
 	)
 	
 	try:
@@ -123,7 +125,7 @@ def silence_based_conversion():
 	#Process each chunk per requirements
 	for i, chunk in enumerate(chunks):
 	    #Create 0.5 seconds silence chunk
-	    silence_chunk = AudioSegment.silent(duration=500)
+	    silence_chunk = AudioSegment.silent(duration=100)
 
 	    #Add  0.5 sec silence to beginning and end of audio chunk
 	    audio_chunk = silence_chunk + chunk + silence_chunk
@@ -144,7 +146,7 @@ def silence_based_conversion():
 	    r = sr.Recognizer() 
 
 	    with sr.AudioFile(AUDIO_FILE) as source: 
-	    	r.adjust_for_ambient_noise(source)
+	    	#r.adjust_for_ambient_noise(source)
 	    	audio_listened = r.listen(source) 
 	  
 	    try:     

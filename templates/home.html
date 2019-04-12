@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<title>ONYX HOME PAGE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+
+    <img src="http://www.onyx-nie.org/uploads/7/6/8/5/7685660/1466473794.png" style="float: right;">
+     <a href="http://localhost:5000/home" class="w3-bar-item w3-button w3-padding-large w3-hide-small">HOME</a>
+  
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">TEAM <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="http://localhost:5000/viewteam" class="w3-bar-item w3-button">View Team</a>
+      </div>
+   </div>
+
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">MODIFY <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="http://localhost:5000/insertmembers" class="w3-bar-item w3-button">Insert members</a>
+        <a href="http://localhost:5000/insertcore" class="w3-bar-item w3-button">Insert Core</a>
+        <a href="http://localhost:5000/delete" class="w3-bar-item w3-button">Delete</a>
+        <a href="http://localhost:5000/updatecore" class="w3-bar-item w3-button">Update Core</a>
+        <a href="http://localhost:5000/updatemember" class="w3-bar-item w3-button">Update Member</a>
+      </div>
+      </div>
+    <a href="http://localhost:5000/events" class="w3-bar-item w3-button w3-padding-large w3-hide-small">EVENTS</a>
+    <a href="http://localhost:5000/graph" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GRAPH</a>
+
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">BOOKHUB <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="http://localhost:5000/bookhub" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BOOKHUB</a>
+        <a href="http://localhost:5000/insert_books" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Insert Books</a>
+      </div>
+   </div>
+
+    <div class="w3-dropdown-hover w3-hide-small">
+      <a href="http://localhost:5000/logout"><button class="w3-padding-large w3-button" title="More">Logout</button></a>     
+      </div>
+   </div>
+
+
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <div class="w3-display-container w3-center">
+    <img src="https://i.postimg.cc/TY6505Gy/IMG-20180218-_WA0010.jpg" style="width:100%;height:600px;opacity: .7">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-12 w3-hide-small" style="top:-1.0%">
+      <h1 style="color:black;"><strong><bold>ONYX E-CELL</bold></strong></h1>
+      <p><b><h2 style="color:black;">Towards Excellence</h2></b></p>   
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://i.postimg.cc/TY6505Gy/IMG-20180218-_WA0010.jpg" style="width:100%;height:600px;opacity: .7">
+     <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-12 w3-hide-small" style="top:-1.0%" >
+      <h1 style="color:black;"><strong><bold>ONYX E-CELL</bold></strong></h1>
+      <p><b><h2 style="color:black;">Towards Excellence</h2></b></p>   
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="https://i.postimg.cc/TY6505Gy/IMG-20180218-_WA0010.jpg" style="width:100%;height:600px;opacity: .7">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-12 w3-hide-small" style="top:-1.0%">
+      <h1 style="color:black;"><bold><strong>ONYX E-CELL</strong></bold></h1>
+      <p><b><h2 style="color:black;">Towards Excellence</h2></b></p>   
+    </div>
+  </div>
+
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 4000);    
+}
+
+
+</script>
+
+</body>
+</html>
