@@ -322,7 +322,7 @@ def commence():
 
 	#compression = int(input('enter the percentage of compression (without "%" symbol)'))
 	# set the compression percentage. can be customized.
-	compression = 35
+	compression = 50
 
 	vector, unique_words = vectorize(processed_text)
 
