@@ -31,7 +31,7 @@ def convert_audio_to_text(path = "gandhi.wav"):
 	
 	# Interval length at which to slice the audio file. 
 	interval = 10 * 1000
-	overlap = 1*1000
+	overlap = 2*1000
 	start = 0
 	end = 0
 	  
@@ -70,7 +70,7 @@ def convert_audio_to_text(path = "gandhi.wav"):
 	    r = sr.Recognizer() 
 
 	    with sr.AudioFile(AUDIO_FILE) as source: 
-	    	r.adjust_for_ambient_noise(source)
+	    	#r.adjust_for_ambient_noise(source)
 	    	audio_listened = r.listen(source) 
 	  
 	    try:     
@@ -105,7 +105,7 @@ def silence_based_conversion(path = "alice-medium.wav"):
 
 	chunks = split_on_silence(song, 
 	    # must be silent for at least 2 seconds or 2000 ms
-	    min_silence_len=1600,
+	    min_silence_len=1500,
 
 	    # consider it silent if quieter than -16 dBFS
 	    #Adjust this per requirement
@@ -125,7 +125,7 @@ def silence_based_conversion(path = "alice-medium.wav"):
 	#Process each chunk per requirements
 	for i, chunk in enumerate(chunks):
 	    #Create 0.5 seconds silence chunk
-	    silence_chunk = AudioSegment.silent(duration=500)
+	    silence_chunk = AudioSegment.silent(duration=20)
 
 	    #Add  0.5 sec silence to beginning and end of audio chunk
 	    audio_chunk = silence_chunk + chunk + silence_chunk
@@ -146,7 +146,7 @@ def silence_based_conversion(path = "alice-medium.wav"):
 	    r = sr.Recognizer() 
 
 	    with sr.AudioFile(AUDIO_FILE) as source: 
-	    	r.adjust_for_ambient_noise(source)
+	    	#r.adjust_for_ambient_noise(source)
 	    	audio_listened = r.listen(source) 
 	  
 	    try:     
