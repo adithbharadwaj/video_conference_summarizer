@@ -21,6 +21,12 @@ from flask import Flask,render_template,url_for,flash,redirect, request
 
 app = Flask(__name__)
 
+HOST_NAME = os.environ.get('OPENSHIFT_APP_DNS', 'localhost')
+APP_NAME = os.environ.get('OPENSHIFT_APP_NAME', 'flask')
+IP = os.environ.get('OPENSHIFT_PYTHON_IP', '127.0.0.1')
+PORT = int(os.environ.get('OPENSHIFT_PYTHON_PORT', 8080))
+HOME_DIR = os.environ.get('OPENSHIFT_HOMEDIR', os.getcwd())
+
 #print(text)
 
 def clean(text):
@@ -280,9 +286,9 @@ def commence():
 	if(request.method == 'POST'):
 		audio_path = request.form['FileName']
 	
-	convert_audio_to_text(audio_path)
+	#convert_audio_to_text(audio_path)
 	#print(audio_path)				##Here we can put the name of the file or link to the audio file
-	#silence_based_conversion(audio_path)
+	silence_based_conversion(audio_path)
 	text = ''
 	with open('recognized.txt') as source:
 		for sent in source:
@@ -346,7 +352,7 @@ def commence():
 
 
 if __name__ == '__main__':
-	app.run(debug = True)
+	app.run(host='0.0.0.0', port=PORT)
 
 
 

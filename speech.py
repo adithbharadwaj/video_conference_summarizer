@@ -105,7 +105,7 @@ def silence_based_conversion(path = "alice-medium.wav"):
 
 	chunks = split_on_silence(song, 
 	    # must be silent for at least 2 seconds or 2000 ms
-	    min_silence_len=1500,
+	    min_silence_len=1300,
 
 	    # consider it silent if quieter than -16 dBFS
 	    #Adjust this per requirement
@@ -125,7 +125,7 @@ def silence_based_conversion(path = "alice-medium.wav"):
 	#Process each chunk per requirements
 	for i, chunk in enumerate(chunks):
 	    #Create 0.5 seconds silence chunk
-	    silence_chunk = AudioSegment.silent(duration=100)
+	    silence_chunk = AudioSegment.silent(duration=500)
 
 	    #Add  0.5 sec silence to beginning and end of audio chunk
 	    audio_chunk = silence_chunk + chunk + silence_chunk
