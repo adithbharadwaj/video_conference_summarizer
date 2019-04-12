@@ -10,7 +10,7 @@ def addMail(emailID):
     Df = pd.DataFrame(Df)
 
     Df=Df.append(df, ignore_index = True)
-
+    print(df)
     Df.to_excel('demo.xlsx', index = False)
      
 def get_email_list(path):
@@ -52,4 +52,4 @@ def send():
     summary = f.read()
     content = '\n' + current + '\n' + summary
     print(content)
-send_mail(recipients, content)
+    send_mail(recipients, content)

@@ -7,3 +7,4 @@ flask
 scipy
 numpy
 tqdm
+openpyxl
